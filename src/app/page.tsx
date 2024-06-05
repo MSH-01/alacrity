@@ -76,7 +76,7 @@ export default function Home() {
         <h1 className='text-4xl font-bold pb-12'>Meet the Team at Alacrity</h1>
         <div className='flex gap-5 justify-center'>
         {team.members.map((member, index) => (
-          <Card key={index} title={member.name} value={member.role} user />
+          <Card key={index} title={member.name} value={member.role} extra={member.age} user />
         ))}
         </div>
       </div>
