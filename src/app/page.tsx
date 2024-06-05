@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Card from './components/card';
-import { join } from 'path';
+import TeamForm from './components/form';
 
 export default function Home() {
 
@@ -55,9 +55,6 @@ export default function Home() {
   }, [team]);
 
   function joinTeam() {
-    // Add new member to team
-    // Could be refactored to use form state
-    console.log(newAge, newName)
     setTeam({members: [...team.members, {name: newName, age: newAge, role: 'Software Engineer'}]});
     setNewName('');
     setNewAge(0);
@@ -66,13 +63,13 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
-      <h1>Meet the team at Alacrity</h1>
+      <h1>Meet the Team at Alacrity</h1>
       {/* For loop here through team members */}
         {/* Render user card for each user */}
       {/* End for loop */}
       <div className='flex gap-5'>
       {team.members.map((member, index) => (
-        <Card key={index} title={member.name} />
+        <Card key={index} data={member} />
       ))}
       </div>
 
@@ -96,13 +93,7 @@ export default function Home() {
 
       <h2>Join our team</h2>
       {/* Form to join the team */}
-      <div>
-        <div className='flex gap-5'>
-          <input type='text' placeholder='Name' onChange={(e) => setNewName(e.target.value)}  className='bg-black text-white' />
-          <input type='number' placeholder='Age' onChange={(e) => setNewAge(Number(e.target.value))} className='bg-black text-white' />
-        </div>
-        <button className='bg-black text-white w-full mt-5' onClick={joinTeam}>Join</button>
-      </div>
+      <TeamForm newName={newName} newAge={newAge} setNewName={setNewName} setNewAge={setNewAge} joinTeam={joinTeam} />
     </main>
   );
 }

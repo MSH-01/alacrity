@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 
-function Card ({ title }: Readonly<{ title: string }>) {
+function Card ({ data }: Readonly<{ data: ReactNode }>) {
     return (
         <div>
-            <h2>{title}</h2>
+            {/* Display name of user, fallback to empty string if undefined  */}
+            <h2>{data?.name ?? ''}</h2>
         </div>
     )
 }
