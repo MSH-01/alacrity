@@ -86,7 +86,7 @@ export default function Home() {
         <h2 className='text-2xl font-bold pb-12'>About our team</h2>
         <div className='flex gap-5 text-center'>
           <div>
-            <Card value='Average Age' title={avgAge} />
+            <Card value='Average Age' title={String(avgAge)} />
           </div>
           <div>
             <Card value='Youngest Member' title={youngest} />
