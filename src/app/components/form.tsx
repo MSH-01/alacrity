@@ -9,17 +9,17 @@ const TeamForm = ({ newName, newAge, setNewName, setNewAge, joinTeam }: { newNam
           placeholder='Name' 
           value={newName} 
           onChange={(e) => setNewName(e.target.value)} 
-          className='bg-black text-white' 
+          className='bg-[#E0E0E0] text-black p-2 rounded-md' 
         />
         <input 
           type='number' 
           placeholder='Age' 
           value={newAge} 
           onChange={(e) => setNewAge(Number(e.target.value))} 
-          className='bg-black text-white' 
+          className='bg-[#E0E0E0] text-black p-2 rounded-md' 
         />
       </div>
-      <button type='submit' className='bg-black text-white w-full mt-5'>
+      <button type='submit' className='bg-blue-600 hover:bg-blue-500 transition text-white w-full mt-5 p-2 rounded-md'>
         Join
       </button>
     </form>
