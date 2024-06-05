@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react';
+import Card from './components/card';
 
 export default function Home() {
 
@@ -55,6 +56,12 @@ export default function Home() {
       {/* For loop here through team members */}
         {/* Render user card for each user */}
       {/* End for loop */}
+      <div className='flex gap-5'>
+      {team.members.map((member, index) => (
+        <Card key={index} title={member.name} />
+      ))}
+      </div>
+
 
       <h2>About our team</h2>
       {/* Statistics from each member */}
