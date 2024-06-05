@@ -66,7 +66,7 @@ export default function Home() {
   }
 
   return (
-    <main className="flex flex-col justify-center items-center h-screen">
+    <main className="flex flex-col justify-center items-center p-20">
       {/* BG */}
       <div className="fixed inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
       
@@ -74,9 +74,9 @@ export default function Home() {
       {/* TEAM MEMBERS */}
       <div className='text-center mb-12'>
         <h1 className='text-4xl font-bold pb-12'>Meet the Team at Alacrity</h1>
-        <div className='flex gap-5 max-w-[750px] overflow-scroll justify-center'>
+        <div className='flex gap-5 justify-center'>
         {team.members.map((member, index) => (
-          <Card key={index} title={member.name} value={member.role} />
+          <Card key={index} title={member.name} value={member.role} user />
         ))}
         </div>
       </div>
