@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Card from './components/card';
+import { join } from 'path';
 
 export default function Home() {
 
@@ -18,6 +19,10 @@ export default function Home() {
   const [avgAge, setAvgAge] = useState(0);
   const [youngest, setYoungest] = useState('');
   const [oldest, setOldest] = useState('');
+
+  // New member
+  const [newName, setNewName] = useState('');
+  const [newAge, setNewAge] = useState(0);
 
   // Calculate team statistics on load and when team changes
   useEffect(() => {
@@ -47,7 +52,16 @@ export default function Home() {
     setYoungest(youngestName);
     setOldest(oldestName);
     // include team in dependencies to recalculate when team changes
-  }, [team]);  
+  }, [team]);
+
+  function joinTeam() {
+    // Add new member to team
+    // Could be refactored to use form state
+    console.log(newAge, newName)
+    setTeam({members: [...team.members, {name: newName, age: newAge, role: 'Software Engineer'}]});
+    setNewName('');
+    setNewAge(0);
+  }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -82,6 +96,13 @@ export default function Home() {
 
       <h2>Join our team</h2>
       {/* Form to join the team */}
+      <div>
+        <div className='flex gap-5'>
+          <input type='text' placeholder='Name' onChange={(e) => setNewName(e.target.value)}  className='bg-black text-white' />
+          <input type='number' placeholder='Age' onChange={(e) => setNewAge(Number(e.target.value))} className='bg-black text-white' />
+        </div>
+        <button className='bg-black text-white w-full mt-5' onClick={joinTeam}>Join</button>
+      </div>
     </main>
   );
 }
