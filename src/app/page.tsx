@@ -3,8 +3,6 @@
 import { useEffect, useState } from 'react';
 import Card from './components/card';
 import TeamForm from './components/form';
-import ProfileCard from './components/profileCard';
-import { getOldestUser } from './utils/util';
 
 export default function Home() {
 
@@ -20,7 +18,7 @@ export default function Home() {
   // Team statistics
   const [avgAge, setAvgAge] = useState(0);
   const [youngest, setYoungest] = useState('');
-  const [oldest, setOldest] = useState({});
+  const [oldest, setOldest] = useState('');
 
   // New member
   const [newName, setNewName] = useState('');
@@ -37,8 +35,6 @@ export default function Home() {
     let oldestName = '';
     
     // Loop through team members to calculate statistics
-
-
     team.members.forEach(member => {
       totalAge += member.age;
       if (member.age < youngestAge) {
@@ -51,12 +47,10 @@ export default function Home() {
       }
     });
 
-
-
     // Set statistics states
     setAvgAge(totalAge / team.members.length);
     setYoungest(youngestName);
-    setOldest(getOldestUser(team));
+    setOldest(oldestName);
     // include team in dependencies to recalculate when team changes
   }, [team]);
 
@@ -80,11 +74,10 @@ export default function Home() {
       {/* TEAM MEMBERS */}
       <div className='text-center mb-12'>
         <h1 className='text-4xl font-bold pb-12'>Meet the Team at Alacrity</h1>
-        <div className='grid grid-cols-3 gap-5 justify-center'>
-          {team.members.map((member, index) => (
-            // <Card key={index} title={member.name} value={member.role} extra={member.age} user />
-            <ProfileCard key={index} user={member} />
-          ))}
+        <div className='flex gap-5 justify-center'>
+        {team.members.map((member, index) => (
+          <Card key={index} title={member.name} value={member.role} extra={member.age} user />
+        ))}
         </div>
       </div>
 
@@ -99,7 +92,7 @@ export default function Home() {
             <Card value='Youngest Member' title={youngest} />
           </div>
           <div>
-            <Card value='Oldest Member' title={oldest.name} />
+            <Card value='Oldest Member' title={oldest} />
           </div>
         </div>
       </div>
